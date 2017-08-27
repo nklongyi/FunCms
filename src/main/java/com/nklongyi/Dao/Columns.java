@@ -5,6 +5,7 @@ import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -20,6 +21,8 @@ public class Columns implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+
+
     @Id
     @GeneratedValue
     private long id;
@@ -33,6 +36,32 @@ public class Columns implements Serializable {
     @OneToMany(mappedBy = "columns")
     @LazyCollection(LazyCollectionOption.FALSE)
     private Set<Article> articles = new HashSet<Article>();//栏目关联的文章
+
+    @Column(nullable = false,name = "ctime",updatable = false)
+    @Temporal(TemporalType.TIMESTAMP)
+    @org.hibernate.annotations.CreationTimestamp
+    private Date ctime;//创建时间
+
+    @Column(nullable = false,name = "uptime",updatable=true)
+    @Temporal(TemporalType.TIMESTAMP)
+    @org.hibernate.annotations.UpdateTimestamp
+    private Date uptime;//更新时间
+
+    public Date getCtime() {
+        return ctime;
+    }
+
+    public void setCtime(Date ctime) {
+        this.ctime = ctime;
+    }
+
+    public Date getUptime() {
+        return uptime;
+    }
+
+    public void setUptime(Date uptime) {
+        this.uptime = uptime;
+    }
 
     public String getName() {
         return name;
@@ -56,5 +85,13 @@ public class Columns implements Serializable {
 
     public void setArticles(Set<Article> articles) {
         this.articles = articles;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 }

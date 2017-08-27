@@ -10,7 +10,9 @@ import java.util.List;
  */
 public interface ColumnsRepository extends JpaRepository<Columns,Long> {
     List<Columns> findAll();
-    Columns findById(long ColumnsId);
+    Columns findById(long id);
+    Columns findByName(String name);
     Columns  save(Columns columns);
-    void deleteById(long ColumnsId);
+    void deleteById(long id);
+
 }

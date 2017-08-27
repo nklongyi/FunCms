@@ -29,10 +29,12 @@ public class Article implements Serializable{
 
     @Column(nullable = false,name = "ctime",insertable=true)
     @Temporal(TemporalType.TIMESTAMP)
+    @org.hibernate.annotations.CreationTimestamp
     private Date ctime;//文章创建时间
 
     @Column(nullable = false,name = "uptime",updatable=true)
     @Temporal(TemporalType.TIMESTAMP)
+    @org.hibernate.annotations.UpdateTimestamp
     private Date uptime;//文章更新时间
 
     @Column(nullable = false,name = "content")
